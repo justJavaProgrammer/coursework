@@ -1,5 +1,5 @@
 CREATE TABLE student_card (
-    id BIGINT PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     business_key varchar(255) NOT NULL UNIQUE,
     room_number varchar(255) NOT NULL,
     dormitory_id BIGINT NOT NULL,

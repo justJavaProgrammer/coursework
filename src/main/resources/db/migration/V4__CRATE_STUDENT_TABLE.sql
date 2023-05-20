@@ -1,6 +1,5 @@
 CREATE TABLE student(
-    id BIGINT NOT NULL PRIMARY KEY,
-    business_key varchar(255) NOT NULL UNIQUE,
+    id bigserial NOT NULL PRIMARY KEY,
     birthdate DATE NOT NULL,
     faculty_id BIGINT NOT NULL,
     associated_group BIGINT NOT NULL,
