@@ -1,5 +1,5 @@
 CREATE TABLE apartment_address (
-    id BIGINT NOT NULL,
+    id bigserial NOT NULL,
     entrance varchar(255) NOT NULL,
     apartment_number varchar(255) NOT NULL,
 

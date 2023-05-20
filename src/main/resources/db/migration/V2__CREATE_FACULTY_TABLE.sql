@@ -1,5 +1,5 @@
 CREATE TABLE faculties (
-    id            BIGINT PRIMARY KEY,
+    id            bigserial PRIMARY KEY,
     business_key  varchar(255) NOT NULL UNIQUE,
     faculty_name  varchar(255) NOT NULL,
     faculty_code  varchar(255) NOT NULL UNIQUE,

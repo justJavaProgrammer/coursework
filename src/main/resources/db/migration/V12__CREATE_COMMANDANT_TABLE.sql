@@ -1,5 +1,5 @@
 CREATE TABLE commandant (
-    id BIGINT NOT NULL PRIMARY KEY,
+    id bigserial NOT NULL PRIMARY KEY,
     phone_number varchar NOT NULL,
     dormitory BIGINT NOT NULL,
 

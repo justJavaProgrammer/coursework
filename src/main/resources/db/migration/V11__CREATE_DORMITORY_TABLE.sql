@@ -1,5 +1,5 @@
 CREATE TABLE dormitory(
-    id BIGINT PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     business_key varchar(255) NOT NULL UNIQUE,
     dormitory_number varchar(255) NOT NULL,
     phone_number varchar(255) NOT NULL,
