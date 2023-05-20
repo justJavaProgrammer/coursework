@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-// save student -> add student to faculty, add student to group
-
 @Service
 public class RepositoryStudentService implements StudentService {
     private final StudentRepository studentRepository;

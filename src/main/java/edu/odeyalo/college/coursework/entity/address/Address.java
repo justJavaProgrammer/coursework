@@ -25,6 +25,6 @@ public class Address extends BaseEntity {
     protected String country;
     @Column(name = "zip_code", nullable = false)
     protected String zipCode;
-    @Column(name = "state", nullable = false)
+    @Column(name = "state")
     protected String state;
 }

@@ -19,14 +19,4 @@ public class Person extends BaseEntity {
     private String surname;
     @Column(name = "patronymic", nullable = false)
     private String patronymic;
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

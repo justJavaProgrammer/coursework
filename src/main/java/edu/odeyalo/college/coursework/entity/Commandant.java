@@ -23,14 +23,4 @@ public class Commandant extends Person {
     @OneToOne
     @JoinColumn(name = "dormitory")
     private Dormitory dormitory;
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-       return super.hashCode();
-    }
 }

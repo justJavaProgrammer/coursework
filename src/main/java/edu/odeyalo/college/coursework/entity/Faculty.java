@@ -44,7 +44,6 @@ public class Faculty extends BaseEntity {
     }
 
     public void addStudent(Student student) {
-//        student.getFaculties().add(this);
         students.add(student);
     }
 
@@ -53,15 +52,5 @@ public class Faculty extends BaseEntity {
             students = new ArrayList<>();
         }
         return students;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 }
