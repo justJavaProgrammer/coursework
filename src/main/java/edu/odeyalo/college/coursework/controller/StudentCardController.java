@@ -56,8 +56,7 @@ public class StudentCardController {
             @RequestParam(name = "faculty_id", required = false) Long facultyId,
             @RequestParam(name = "dormitory_number", required = false) String dormitoryNumber,
             @RequestParam(name = "room_number", required = false) String roomNumber,
-            Pageable pageable
-    ) {
+            Pageable pageable) {
 
         StudentSearchRequest student = StudentSearchRequest.builder()
                 .name(name)
@@ -70,7 +69,6 @@ public class StudentCardController {
         StudentCardSearchRequest request = new StudentCardSearchRequest(student, dormitoryId, facultyId, dormitoryNumber, roomNumber);
 
         StudentCardSearchResult result = studentCardSearchService.search(request, pageable);
-
 
         List<GenericStudentCardInfo> body = result.getResult().stream()
                 .map(genericStudentCardInfoConverter::toInfo)

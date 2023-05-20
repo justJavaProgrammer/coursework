@@ -48,7 +48,7 @@ public class StudentController {
     public ResponseEntity<?> getAll(Pageable pageable) {
         List<FacultyAwareStudentInfo> info = studentSearchService.findAll(pageable)
                 .getResult()
-                .stream().map(student -> facultiyAwareStudentInfoConverter.toInfo(student))
+                .stream().map(facultiyAwareStudentInfoConverter::toInfo)
                 .toList();
         return ResponseEntity.ok(new SearchResponse(info));
     }
