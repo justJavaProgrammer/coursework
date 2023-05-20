@@ -21,6 +21,6 @@ public class Commandant extends Person {
     private String phoneNumber;
 
     @OneToOne
-    @JoinColumn(name = "dormitory_id")
+    @JoinColumn(name = "dormitory")
     private Dormitory dormitory;
 }
