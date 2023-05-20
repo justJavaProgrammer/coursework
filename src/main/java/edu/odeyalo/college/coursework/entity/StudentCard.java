@@ -17,19 +17,9 @@ public class StudentCard extends BaseEntity {
     @JoinColumn(name = "parents_address_id", nullable = false)
     @OneToOne
     private Address parentsAddress;
-    @JoinColumn(name = "dormitory", nullable = false)
+    @JoinColumn(name = "dormitory_id", nullable = false)
     @OneToOne
     private Dormitory dormitory;
     @Column(name = "room_number", nullable = false)
     private String roomNumber;
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

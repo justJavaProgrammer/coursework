@@ -21,18 +21,8 @@ public class Student extends Person {
     @JoinColumn(name = "faculty_id")
     @OneToOne
     private Faculty faculty;
-    // Contains information in what group current student studies
+    // Contains information about group where current student studies
     @JoinColumn(name = "associated_group")
     @OneToOne
     private FacultyGroup group;
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }
