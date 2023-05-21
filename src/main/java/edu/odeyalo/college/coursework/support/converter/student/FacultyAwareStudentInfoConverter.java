@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(uses = GenericFacultyInfoConverter.class, componentModel = "spring")
-public interface FacultiyAwareStudentInfoConverter {
+public interface FacultyAwareStudentInfoConverter {
 
     @Mapping(source = "group.faculty", target = "facultyInfo")
     FacultyAwareStudentInfo toInfo(Student student);

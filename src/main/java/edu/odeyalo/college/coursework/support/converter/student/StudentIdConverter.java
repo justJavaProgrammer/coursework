@@ -13,6 +13,9 @@ public abstract class StudentIdConverter {
     private StudentRepository studentRepository;
 
     public Student toStudent(StudentId studentId) {
+        if (studentId.getId() == null) {
+            return null;
+        }
         return studentRepository.findById(studentId.getId())
                 .orElse(null);
     }

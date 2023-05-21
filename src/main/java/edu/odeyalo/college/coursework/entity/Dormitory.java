@@ -45,4 +45,8 @@ public class Dormitory extends BaseEntity {
     public int hashCode() {
         return super.hashCode();
     }
+
+    public void addStudentCard(StudentCard studentCard) {
+        this.studentCards.add(studentCard);
+    }
 }

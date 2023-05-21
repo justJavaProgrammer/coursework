@@ -1,5 +1,6 @@
 package edu.odeyalo.college.coursework.dto.address;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotBlank;
@@ -27,6 +28,7 @@ public class AddressDto {
     @NotBlank(message = "The country name is mandatory")
     protected String country;
     @NotBlank(message = "Zip code is mandatory")
+    @JsonProperty("zip_code")
     protected String zipCode;
     @NotBlank(message = "The state is mandatory")
     protected String state;
