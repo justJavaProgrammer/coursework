@@ -12,11 +12,14 @@ import edu.odeyalo.college.coursework.service.search.student.StudentSearchReques
 import edu.odeyalo.college.coursework.service.storage.StudentCardService;
 import edu.odeyalo.college.coursework.support.converter.card.CreateStudentCardDtoConverter;
 import edu.odeyalo.college.coursework.support.converter.card.GenericStudentCardInfoConverter;
+import edu.odeyalo.college.coursework.support.validation.ValidationResult;
+import edu.odeyalo.college.coursework.support.validation.card.StudentCardIntegrityValidator;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO:
@@ -38,12 +41,14 @@ public class StudentCardController {
     private final StudentCardSearchService studentCardSearchService;
     private final CreateStudentCardDtoConverter converter;
     private final GenericStudentCardInfoConverter genericStudentCardInfoConverter;
+    private final StudentCardIntegrityValidator validator;
 
-    public StudentCardController(StudentCardService service, StudentCardSearchService studentCardSearchService, CreateStudentCardDtoConverter converter, GenericStudentCardInfoConverter genericStudentCardInfoConverter) {
+    public StudentCardController(StudentCardService service, StudentCardSearchService studentCardSearchService, CreateStudentCardDtoConverter converter, GenericStudentCardInfoConverter genericStudentCardInfoConverter, StudentCardIntegrityValidator validator) {
         this.service = service;
         this.studentCardSearchService = studentCardSearchService;
         this.converter = converter;
         this.genericStudentCardInfoConverter = genericStudentCardInfoConverter;
+        this.validator = validator;
     }
 
     @GetMapping("/search")
@@ -94,8 +99,14 @@ public class StudentCardController {
     @PostMapping(value = "/create")
     public ResponseEntity<?> saveStudentCard(@RequestBody CreateStudentCardDto dto) {
         StudentCard card = converter.toStudentCard(dto);
-        StudentCard studentCard = service.createStudentCard(card);
+        ValidationResult result = validator.validate(card);
+        if (!result.success()) {
+            Map<String, Object> body = Map.of("reason", result.reason());
+            return ResponseEntity.badRequest()
+                    .body(body);
+        }
+        card = service.createStudentCard(card);
 
-        return ResponseEntity.ok(genericStudentCardInfoConverter.toInfo(studentCard));
+        return ResponseEntity.ok(genericStudentCardInfoConverter.toInfo(card));
     }
 }

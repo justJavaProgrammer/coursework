@@ -39,6 +39,7 @@ public class RepositoryStudentCardService implements StudentCardService {
     public StudentCard createStudentCard(StudentCard studentCard) {
         Address parentsAddress = studentCard.getParentsAddress();
         addressService.saveAddress(parentsAddress);
+        studentCard.getDormitory().addStudentCard(studentCard);
         return studentCardRepository.save(studentCard);
     }
 

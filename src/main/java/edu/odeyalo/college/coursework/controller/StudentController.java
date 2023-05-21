@@ -10,7 +10,7 @@ import edu.odeyalo.college.coursework.service.search.student.StudentSearchResult
 import edu.odeyalo.college.coursework.service.search.student.StudentSearchService;
 import edu.odeyalo.college.coursework.service.storage.StudentService;
 import edu.odeyalo.college.coursework.support.converter.student.CreateStudentDtoConverter;
-import edu.odeyalo.college.coursework.support.converter.student.FacultiyAwareStudentInfoConverter;
+import edu.odeyalo.college.coursework.support.converter.student.FacultyAwareStudentInfoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
@@ -26,21 +26,21 @@ public class StudentController {
     private final StudentService studentService;
     private final StudentSearchService studentSearchService;
     private final CreateStudentDtoConverter createStudentDtoConverter;
-    private final FacultiyAwareStudentInfoConverter facultiyAwareStudentInfoConverter;
+    private final FacultyAwareStudentInfoConverter facultyAwareStudentInfoConverter;
 
     @Autowired
-    public StudentController(StudentSearchService studentSearchService, StudentService studentService, CreateStudentDtoConverter createStudentDtoConverter, FacultiyAwareStudentInfoConverter facultiyAwareStudentInfoConverter) {
+    public StudentController(StudentSearchService studentSearchService, StudentService studentService, CreateStudentDtoConverter createStudentDtoConverter, FacultyAwareStudentInfoConverter facultyAwareStudentInfoConverter) {
         this.studentSearchService = studentSearchService;
         this.studentService = studentService;
         this.createStudentDtoConverter = createStudentDtoConverter;
-        this.facultiyAwareStudentInfoConverter = facultiyAwareStudentInfoConverter;
+        this.facultyAwareStudentInfoConverter = facultyAwareStudentInfoConverter;
     }
 
 
     @GetMapping
     public ResponseEntity<?> getById(@RequestParam Long id) throws StudentNotFoundException {
         Student student = studentService.findById(id);
-        FacultyAwareStudentInfo info = facultiyAwareStudentInfoConverter.toInfo(student);
+        FacultyAwareStudentInfo info = facultyAwareStudentInfoConverter.toInfo(student);
         return ResponseEntity.ok(info);
     }
 
@@ -48,7 +48,7 @@ public class StudentController {
     public ResponseEntity<?> getAll(Pageable pageable) {
         List<FacultyAwareStudentInfo> info = studentSearchService.findAll(pageable)
                 .getResult()
-                .stream().map(facultiyAwareStudentInfoConverter::toInfo)
+                .stream().map(facultyAwareStudentInfoConverter::toInfo)
                 .toList();
         return ResponseEntity.ok(new SearchResponse(info));
     }
@@ -61,7 +61,7 @@ public class StudentController {
 
         student = studentService.save(student);
 
-        FacultyAwareStudentInfo body = facultiyAwareStudentInfoConverter.toInfo(student);
+        FacultyAwareStudentInfo body = facultyAwareStudentInfoConverter.toInfo(student);
 
         return ResponseEntity.ok(body);
     }
@@ -85,7 +85,7 @@ public class StudentController {
 
         StudentSearchResult result = studentSearchService.searchStudents(searchRequest, pageable);
 
-        List<FacultyAwareStudentInfo> body = result.getResult().stream().map(facultiyAwareStudentInfoConverter::toInfo).toList();
+        List<FacultyAwareStudentInfo> body = result.getResult().stream().map(facultyAwareStudentInfoConverter::toInfo).toList();
 
         return ResponseEntity.ok(new SearchResponse(body));
     }
